@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+	<template id="two_factor_auth" name="2FA">
+		<form role="form" t-attf-action="/web/login/auth{{ '?debug' if debug else '' }}"
+			method="post">
+			<style>
+				input[type="text"] {
+				width: 20%;
+				padding: 12px 20px;
+				margin: 8px 0;
+				display: inline-block;
+				box-sizing: border-box;
+				align: center;
+			}
+				
+			button[type="submit"]{
+				width: 10%;
+				padding: 12px 20px;
+				margin: 8px 0;
+				display: inline-block;
+				box-sizing: border-box;
+				align: center;
+				background-color: #4CAF50; /* Green */
+			    border: none;
+			    color: white;
+			    padding: 16px 32px;
+			    text-align: center;
+			    text-decoration: none;
+			    display: inline-block;
+			    font-size: 16px;
+			    margin: 4px 2px;
+			    -webkit-transition-duration: 0.4s; /* Safari */
+			    transition-duration: 0.4s;
+			    cursor: pointer;
+				background-color: white; 
+			    color: black; 
+			    border: 2px solid #008CBA;
+				}
+				button[type="submit"]:hover {
+				    background-color: #008CBA;
+				    color: white;
+				}
+			</style>
+			<center>
+			<div >
+				<label for="2fa_code" style="font-weight:bold">Authentication Code</label> <br/>
+				<input type="text" name="2fa_code" id="2fa_code" class="form-control"
+					required="required" autofocus="1" maxlength="6" minlength="6" />
+					<center>
+						<p style="background-color: transparent; border-color:transparent;color:red;width:100%" t-if="wrong_code">
+							<t t-esc="wrong_code"/>
+						</p>
+					
+					</center>
+				<br />
+			</div>
+			</center>
+			<!-- <input name="login_data" id="login_data" type="hidden"
+				t-att-value="data" />
+-->
+			<input type="hidden" name="redirect" t-att-value="redirect" />
+			<div style="align:center">
+				<center>
+					<button type="submit">Verify</button>
+				</center>
+			</div>
+		</form>
+	</template>
+
+</odoo>
